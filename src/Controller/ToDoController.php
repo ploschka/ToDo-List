@@ -2,17 +2,39 @@
 
 namespace App\Controller;
 
+use App\Entity\ToDo;
+use App\Form\ToDoFormType;
+use App\Repository\ToDoRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ToDoController extends AbstractController
 {
-    #[Route('/', name: 'homepage')]
-    public function index(): Response
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
+        $this->entityManager = $entityManager;        
+    }
+    #[Route('/', name: 'homepage')]
+    public function index(Request $request, ToDoRepository $toDoRepository): Response
+    {
+        $todo = new ToDo();
+        $form = $this->createForm(ToDoFormType::class, $todo);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $this->entityManager->persist($todo);
+            $this->entityManager->flush();
+            return $this->redirectToRoute('homepage');
+        }
+
         return $this->render('to_do/index.html.twig', [
-            'message' => 'Hello, World!',
+            'todo_form' => $form->createView(),
+            'todos' => $toDoRepository->findAll(),
         ]);
     }
 }
