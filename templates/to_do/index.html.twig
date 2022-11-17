@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ToDoController!{% endblock %}
+{% block title %}ToDO List{% endblock %}
 
 {% block body %}
 <div class="content">
@@ -9,7 +9,7 @@
     {{ form(todo_form) }}
 
     {% for todo in todos %}
-        <p>{{ todo.text }}</p>
+        <p class="todo">{{ todo.text }}</p>
     {% endfor %}
 </div>
 {% endblock %}

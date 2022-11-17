@@ -17,15 +17,15 @@ class ToDoController extends AbstractController
 
     public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->entityManager = $entityManager;        
+        $this->entityManager = $entityManager;
     }
     #[Route('/', name: 'homepage')]
     public function index(Request $request, ToDoRepository $toDoRepository): Response
     {
         $todo = new ToDo();
-        $form = $this->createForm(ToDoFormType::class, $todo);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
+        $addForm = $this->createForm(ToDoFormType::class, $todo);
+        $addForm->handleRequest($request);
+        if ($addForm->isSubmitted() && $addForm->isValid())
         {
             $this->entityManager->persist($todo);
             $this->entityManager->flush();
@@ -33,7 +33,7 @@ class ToDoController extends AbstractController
         }
 
         return $this->render('to_do/index.html.twig', [
-            'todo_form' => $form->createView(),
+            'todo_form' => $addForm->createView(),
             'todos' => $toDoRepository->findAll(),
         ]);
     }
