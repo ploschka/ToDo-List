@@ -2,11 +2,14 @@ import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller
 {
+    static targets = ['text'];
+
+
     delete( {params: {id}} )
     {
         var me = this;
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "del", true);
+        xhttp.open("DELETE", "del", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {

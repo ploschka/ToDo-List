@@ -10,10 +10,9 @@
 
     {% for todo in todos %}
         <div {{ stimulus_controller('todo') }} class="todo">
-            {{ todo.text }}
-            <button class="delbutton" {{ stimulus_action('todo', 'delete') }} data-todo-id-param="{{ todo.id }}">
-                Удалить
-            </button>
+            <div {{ stimulus_target('todo', 'text') }} class="todo_text">{{ todo.text }}</div><!--
+            --><button class="redact_button">Изменить</button><!--
+            --><button class="delete_button" {{ stimulus_action('todo', 'delete') }} data-todo-id-param="{{ todo.id }}">Удалить</button>
         </div>
     {% endfor %}
 </div>

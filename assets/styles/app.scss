@@ -19,14 +19,32 @@ body {
     border: solid thin black;
 }
 
-.delbutton
-{
-    float: right;
-    color: black;
-    background: #B32929;
-}
-
 #to_do_form div
 {
     display: inline-block;
+}
+
+.todo_text
+{
+    display: inline-block;
+    width: 60%;
+    box-sizing: border-box;
+}
+
+.redact_button
+{
+    color:black;
+    background: greenyellow;
+    display: inline-block;
+    width: 20%;
+    box-sizing: border-box;
+}
+
+.delete_button
+{
+    display: inline-block;
+    width: 20%;
+    box-sizing: border-box;
+    color: black;
+    background: #B32929;
 }
