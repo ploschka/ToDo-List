@@ -9,7 +9,12 @@
     {{ form(todo_form) }}
 
     {% for todo in todos %}
-        <p class="todo">{{ todo.text }}</p>
+        <div {{ stimulus_controller('todo') }} class="todo">
+            {{ todo.text }}
+            <button class="delbutton" {{ stimulus_action('todo', 'delete') }} data-todo-id-param="{{ todo.id }}">
+                Удалить
+            </button>
+        </div>
     {% endfor %}
 </div>
 {% endblock %}

@@ -1,3 +1,27 @@
 body {
     background-color: lightgray;
 }
+
+.content
+{
+    width: 50%;
+    margin: 5px auto;
+    background-color: burlywood;
+    height: 100%;
+    text-align: center;
+}
+
+.todo
+{
+    width: 40%;
+    text-align: center;
+    margin: 3px auto;
+    border: solid thin black;
+}
+
+.delbutton
+{
+    float: right;
+    color: black;
+    background: #B32929;
+}
