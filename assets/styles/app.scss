@@ -24,27 +24,30 @@ body {
     display: inline-block;
 }
 
-.todo_text
+.todo_text, .textfield
 {
     display: inline-block;
+    overflow: hidden;
     width: 60%;
     box-sizing: border-box;
 }
 
-.redact_button
+.button
 {
-    color:black;
-    background: greenyellow;
+    color: black;
     display: inline-block;
     width: 20%;
     box-sizing: border-box;
 }
 
-.delete_button
+.red_button
 {
-    display: inline-block;
-    width: 20%;
-    box-sizing: border-box;
-    color: black;
+    @extend .button;
     background: #B32929;
+}
+
+.green_button
+{
+    @extend .button;
+    background: greenyellow;
 }
