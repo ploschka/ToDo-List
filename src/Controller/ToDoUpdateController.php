@@ -22,10 +22,6 @@ class ToDoUpdateController extends AbstractController
     #[Route('/upd', name: 'todo_update', methods: ['POST'])]
     public function upd(Request $request, ToDoRepository $toDoRepository): JsonResponse
     {
-        $out = \fopen('php://stdout', 'w');
-        \fwrite($out, $request->getContent());
-        \fwrite($out, "\n");
-        \fclose($out);
         $req = \json_decode($request->getContent(), true);
         $todo = $toDoRepository->find($req['i']);
         $todo->setText($req['text']);
