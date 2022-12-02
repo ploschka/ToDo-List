@@ -3,9 +3,7 @@ version: '3'
 services:
   # Nginx container
   webserver:
-    build:
-      context: https://github.com/ploschka/nginx-symfony.git
-      dockerfile: nginx.Dockerfile
+    image: ploshka/symfony-nginx:latest
     container_name: webserver
     volumes:
       - ./:/app:ro
@@ -16,9 +14,7 @@ services:
 
   # PHP-fpm container
   app:
-    build:
-      context: https://github.com/ploschka/nginx-symfony.git
-      dockerfile: php.Dockerfile
+    image: ploshka/symfony-app:latest
     container_name: app
     volumes:
       - ./:/app:rw
